@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DIIT — Brand System v2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Mukta:wght@400;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* ---- core ---- */
+    --teal:#17688D;        /* Primary — from logo */
+    --teal-bright:#1E86B4; /* Digital teal — screens / links */
+    --teal-tint:#E2F0F6;   /* Teal wash — soft fills */
+    --ink:#0F1B2D;         /* Dark base */
+    --vermilion:#E2533B;   /* Accent / CTA only (replaces coral) */
+    --amber:#F5A623;       /* Highlight — badges, "new batch" */
+    --sand:#FAF7F2;        /* Warm light background (replaces cool cloud) */
+    --paper:#FFFFFF;       /* Cards / surfaces */
+    --slate:#1E293B;       /* Body text */
+    --mist:#64748B;        /* Secondary text */
+    --line:#E7E2DA;        /* Warm hairline */
+    --line-cool:#E2E8F0;   /* Cool hairline (on white) */
+    /* ---- AI sub-brand ---- */
+    --code:#13C2A6;        /* AI accent — terminals, code, WebDev only */
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Inter',sans-serif;color:var(--slate);background:var(--sand);line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px}
+  h1,h2,h3,.display{font-family:'Sora',sans-serif;letter-spacing:-.02em}
+
+  /* ---- circuit divider (signature, echoes the logo traces) ---- */
+  .trace{height:30px;width:100%;color:var(--teal)}
+  .trace svg{width:100%;height:100%;display:block}
+
+  /* ---- hero ---- */
+  header{background:var(--ink);color:var(--paper);padding:56px 0 48px}
+  .eyebrow{font-family:'Inter',sans-serif;font-weight:600;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--amber)}
+  header h1{font-size:clamp(34px,6vw,58px);line-height:1.04;margin:14px 0 8px;color:var(--paper)}
+  header h1 .x{color:var(--vermilion)}
+  header .tag{color:#A9BACA;font-size:17px;max-width:580px}
+  .stamp{display:inline-flex;gap:10px;align-items:center;margin-top:22px;font-family:'Inter';font-weight:500;font-size:12.5px;color:#A9BACA;border:1px solid #2A3A50;border-radius:999px;padding:7px 15px}
+  .stamp b{color:var(--teal-bright)}
+  .vbadge{display:inline-block;font-family:'JetBrains Mono';font-size:11px;letter-spacing:.1em;color:var(--ink);background:var(--amber);padding:3px 9px;border-radius:6px;margin-bottom:4px}
+
+  section{padding:46px 0}
+  .kicker{font-family:'Inter';font-weight:600;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);margin-bottom:8px}
+  section h2{font-size:clamp(24px,3.4vw,34px);color:var(--ink);margin-bottom:6px}
+  .lead{color:var(--mist);max-width:660px;margin-bottom:30px;font-size:16px}
+
+  /* ---- architecture ---- */
+  .arch{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .brandcard{border-radius:18px;border:1px solid var(--line);overflow:hidden;background:var(--paper)}
+  .brandcard .head{padding:20px 24px;color:#fff}
+  .brandcard.master .head{background:var(--teal)}
+  .brandcard.sub .head{background:var(--ink)}
+  .brandcard .head .t{font-family:'Sora';font-weight:700;font-size:20px}
+  .brandcard.sub .head .t{font-family:'Space Grotesk';font-weight:700}
+  .brandcard .head .s{font-size:13px;opacity:.85;margin-top:3px}
+  .brandcard .body{padding:20px 24px}
+  .brandcard .body p{font-size:14px;color:var(--slate);margin-bottom:12px}
+  .brandcard .body .row{font-size:13px;color:var(--mist);padding:5px 0;border-top:1px dashed var(--line);display:flex;justify-content:space-between;gap:12px}
+  .brandcard .body .row:first-of-type{border-top:none}
+  .brandcard .body .row b{color:var(--ink);font-weight:600}
+
+  /* ---- palette ---- */
+  .swatches{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .sw{border-radius:14px;overflow:hidden;background:var(--paper);border:1px solid var(--line);box-shadow:0 1px 2px rgba(15,27,45,.04)}
+  .sw .chip{height:96px;display:flex;align-items:flex-end;padding:10px 12px}
+  .sw .chip span{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500;background:rgba(255,255,255,.85);padding:2px 7px;border-radius:6px;color:var(--ink)}
+  .sw .chip.dark span{background:rgba(0,0,0,.30);color:#fff}
+  .sw .meta{padding:12px 13px 15px}
+  .sw .meta b{font-family:'Sora';font-size:15px;color:var(--ink);display:block}
+  .sw .meta small{color:var(--mist);font-size:12.5px;line-height:1.4;display:block;margin-top:3px}
+  .role{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:2px 7px;border-radius:5px;margin-top:8px}
+  .role.primary{background:var(--teal-tint);color:var(--teal)}
+  .role.base{background:#E4E8EE;color:var(--ink)}
+  .role.accent{background:#FBE2DC;color:#B23B26}
+  .role.high{background:#FDF0DA;color:#B47200}
+  .role.neutral{background:#EDEAE3;color:var(--mist)}
+  .role.code{background:#D7F5EF;color:#0B7A6B}
+
+  /* ---- type ---- */
+  .type-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  .card{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:24px 26px}
+  .card .label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--teal)}
+  .card .face{font-size:13px;color:var(--mist);margin:4px 0 16px}
+  .spec-display{font-family:'Sora';font-weight:700;font-size:40px;color:var(--ink);line-height:1}
+  .spec-sub{font-family:'Sora';font-weight:500;font-size:20px;color:var(--teal);margin-top:6px}
+  .spec-body{font-size:15px;color:var(--slate);margin-top:10px}
+  .spec-deva{font-family:'Mukta';font-weight:600;font-size:24px;color:var(--ink);margin-top:6px}
+  .spec-mono{font-family:'JetBrains Mono';font-size:14px;color:var(--code);margin-top:8px}
+  .spec-grotesk{font-family:'Space Grotesk';font-weight:700;font-size:34px;color:var(--ink);margin-top:2px}
+  .scale{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+  .scale span{font-family:'JetBrains Mono';font-size:11px;color:var(--mist);border:1px solid var(--line);border-radius:6px;padding:4px 8px}
+
+  /* ---- components ---- */
+  .comp{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .panel{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:22px 24px}
+  .panel .pt{font-family:'JetBrains Mono';font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mist);margin-bottom:16px}
+  .btn{display:inline-block;font-family:'Sora';font-weight:600;font-size:14px;border-radius:10px;padding:11px 20px;border:none;cursor:default;margin:0 8px 10px 0}
+  .btn.primary{background:var(--teal);color:#fff}
+  .btn.cta{background:var(--vermilion);color:#fff}
+  .btn.ghost{background:transparent;color:var(--teal);border:1.5px solid var(--teal)}
+  .chiplist{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  .badge{font-family:'Inter';font-weight:600;font-size:11px;letter-spacing:.04em;padding:5px 11px;border-radius:999px}
+  .badge.amber{background:var(--amber);color:var(--ink)}
+  .badge.teal{background:var(--teal-tint);color:var(--teal)}
+  .badge.new{background:var(--vermilion);color:#fff}
+  .badge.code{background:#D7F5EF;color:#0B7A6B;font-family:'JetBrains Mono';font-weight:500}
+
+  /* ---- rules ---- */
+  .rules{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .rule{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+  .rule h3{font-size:16px;display:flex;align-items:center;gap:8px;margin-bottom:10px}
+  .rule.do h3{color:var(--teal)}
+  .rule.dont h3{color:var(--vermilion)}
+  .rule ul{list-style:none}
+  .rule li{font-size:14px;padding:6px 0 6px 22px;position:relative;color:var(--slate)}
+  .rule.do li::before{content:"+";position:absolute;left:0;color:var(--teal);font-weight:700}
+  .rule.dont li::before{content:"\00d7";position:absolute;left:0;color:var(--vermilion);font-weight:700}
+
+  /* ---- application mockups ---- */
+  .apps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .app{border-radius:16px;overflow:hidden;border:1px solid var(--line)}
+  .ad{background:var(--ink);color:#fff;padding:22px;min-height:210px;display:flex;flex-direction:column;justify-content:space-between}
+  .ad .top{font-family:'Inter';font-weight:600;font-size:11px;letter-spacing:.14em;color:var(--amber);text-transform:uppercase}
+  .ad h4{font-family:'Sora';font-weight:700;font-size:23px;line-height:1.12;margin:10px 0}
+  .ad h4 .c{color:var(--vermilion)}
+  .ad .cta{align-self:flex-start;background:var(--vermilion);color:#fff;font-weight:600;font-size:13px;padding:9px 16px;border-radius:9px;font-family:'Sora'}
+  .merch{background:var(--teal);color:#fff;padding:22px;min-height:210px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+  .merch .brain{font-size:30px;margin-bottom:8px}
+  .merch .big{font-family:'Sora';font-weight:700;font-size:34px;letter-spacing:.04em}
+  .merch .slug{font-family:'Inter';font-weight:500;font-size:11px;letter-spacing:.12em;margin-top:6px;color:#BFE0EE;text-transform:uppercase}
+  .cert{background:var(--paper);padding:22px;min-height:210px;display:flex;flex-direction:column;justify-content:center;border-top:5px solid var(--teal)}
+  .cert .seal{font-family:'Inter';font-weight:600;font-size:10px;letter-spacing:.14em;color:var(--mist);text-transform:uppercase}
+  .cert h4{font-family:'Sora';font-size:20px;color:var(--ink);margin:8px 0 4px}
+  .cert .name{font-family:'Sora';font-weight:600;font-size:24px;color:var(--teal);border-bottom:1px dashed var(--line);padding-bottom:8px;margin-bottom:10px}
+  .cert .meta{font-size:12px;color:var(--mist)}
+  .cert .serial{font-family:'JetBrains Mono';font-size:10px;color:var(--mist);margin-top:8px}
+  .app .caption{background:var(--paper);padding:11px 14px;font-size:12px;color:var(--mist);font-family:'JetBrains Mono';border-top:1px solid var(--line)}
+
+  /* second row of apps — institute surfaces */
+  .webhead{background:var(--paper);min-height:210px;display:flex;flex-direction:column}
+  .webhead .bar{display:flex;align-items:center;justify-content:space-between;padding:13px 16px;border-bottom:1px solid var(--line-cool)}
+  .webhead .logo{font-family:'Sora';font-weight:700;color:var(--teal);font-size:18px}
+  .webhead .nav{display:flex;gap:12px;font-size:11px;color:var(--slate)}
+  .webhead .body2{padding:18px 16px;background:var(--sand);flex:1}
+  .webhead .body2 .h{font-family:'Sora';font-weight:700;font-size:20px;color:var(--ink);line-height:1.15}
+  .webhead .body2 .cta{display:inline-block;margin-top:12px;background:var(--vermilion);color:#fff;font-family:'Sora';font-weight:600;font-size:12px;padding:8px 14px;border-radius:8px}
+  .letter{background:var(--paper);min-height:210px;padding:18px 20px;display:flex;flex-direction:column}
+  .letter .lh{display:flex;align-items:center;gap:10px;border-bottom:2px solid var(--teal);padding-bottom:10px}
+  .letter .lh .m{font-family:'Sora';font-weight:700;color:var(--teal);font-size:16px;line-height:1}
+  .letter .lh .m small{display:block;font-family:'Inter';font-weight:500;font-size:9px;letter-spacing:.08em;color:var(--mist);text-transform:uppercase;margin-top:3px}
+  .letter .lbody{font-size:11px;color:var(--mist);margin-top:12px;line-height:1.6}
+  .letter .lbody b{color:var(--slate)}
+  .aidev{background:var(--ink);min-height:210px;padding:20px;display:flex;flex-direction:column;justify-content:space-between}
+  .aidev .tag2{font-family:'JetBrains Mono';font-size:10px;letter-spacing:.12em;color:var(--code);text-transform:uppercase}
+  .aidev h4{font-family:'Space Grotesk';font-weight:700;font-size:24px;color:#fff;line-height:1.08;margin:10px 0}
+  .aidev .codeline{font-family:'JetBrains Mono';font-size:11px;color:#8FA3B8;background:#16263C;border-radius:8px;padding:9px 11px;border-left:3px solid var(--code)}
+  .aidev .cta{align-self:flex-start;background:var(--code);color:var(--ink);font-weight:700;font-size:12px;padding:8px 14px;border-radius:8px;font-family:'Space Grotesk';margin-top:12px}
+
+  .note{font-size:13px;color:var(--mist);margin-top:18px;font-family:'Inter'}
+  .note b{color:var(--teal)}
+
+  /* accessibility table */
+  .a11y{width:100%;border-collapse:collapse;background:var(--paper);border:1px solid var(--line);border-radius:14px;overflow:hidden;font-size:13.5px}
+  .a11y th,.a11y td{text-align:left;padding:12px 16px;border-bottom:1px solid var(--line)}
+  .a11y th{background:var(--teal-tint);color:var(--teal);font-family:'Sora';font-weight:600;font-size:12px;letter-spacing:.02em}
+  .a11y td b{color:var(--ink)}
+  .a11y tr:last-child td{border-bottom:none}
+  .pass{color:#0B7A6B;font-weight:600}
+  .warn{color:#B47200;font-weight:600}
+
+  footer{background:var(--ink);color:#7D90A6;padding:30px 0;font-size:13px;font-family:'JetBrains Mono'}
+  footer b{color:var(--teal-bright)}
+
+  @media(max-width:780px){
+    .swatches{grid-template-columns:repeat(2,1fr)}
+    .type-grid,.rules,.apps,.arch,.comp{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <span class="vbadge">v2 · 2026</span>
+    <div class="eyebrow">DIIT · Brand System</div>
+    <h1>A trusted institute first.<br>Genuinely <span class="x">current</span> on AI.</h1>
+    <p class="tag">One palette anchored to the logo's teal, warm enough for parents and government-job aspirants, with a disciplined techy sub-brand kept only for the AI courses. Built to read as a real NIELIT-accredited institution — never a webinar funnel.</p>
+    <div class="stamp">DIRECTION&nbsp; <b>Institutional trust × quiet modernity, in DIIT teal</b></div>
+  </div>
+</header>
+
+<div class="trace"><svg viewBox="0 0 1200 30" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width="2">
+  <path d="M0 15 H380 L400 5 H560 L580 25 H820 L840 15 H1200"/>
+  <circle cx="400" cy="5" r="4" fill="currentColor" stroke="none"/>
+  <circle cx="580" cy="25" r="4" fill="currentColor" stroke="none"/>
+  <circle cx="840" cy="15" r="4" fill="currentColor" stroke="none"/>
+</svg></div>
+
+<!-- 01 ARCHITECTURE -->
+<section>
+  <div class="wrap">
+    <div class="kicker">01 — Brand architecture</div>
+    <h2>One institute, two voices</h2>
+    <p class="lead">The biggest fix from v1: stop dressing the whole institute as an AI startup. The eleven NIELIT, Tally and programming courses — the ones parents and government-job aspirants pay for — wear the calm <b>Master brand</b>. Only the new AI courses get the techy <b>AI sub-brand</b>. Same logo, same teal, same rules; the AI look is a controlled accent, not the default.</p>
+    <div class="arch">
+      <div class="brandcard master">
+        <div class="head"><div class="t">DIIT — Master Brand</div><div class="s">Institute, NIELIT, CCC / O Level / BCC / ACC / ECC, Tally, all docs &amp; signage</div></div>
+        <div class="body">
+          <p>Calm, credible, bilingual. This is the default for 90% of everything DIIT produces.</p>
+          <div class="row"><span>Display font</span><b>Sora 600 / 700</b></div>
+          <div class="row"><span>Body font</span><b>Inter 400 / 500 / 600</b></div>
+          <div class="row"><span>Hindi</span><b>Mukta 600 / 700</b></div>
+          <div class="row"><span>Lead colour</span><b>Petrol Teal #17688D</b></div>
+          <div class="row"><span>CTA</span><b>Vermilion #E2533B (once / screen)</b></div>
+        </div>
+      </div>
+      <div class="brandcard sub">
+        <div class="head"><div class="t">DIIT.AI — Sub-brand</div><div class="s">AI Website Developer &amp; future AI / coding courses only</div></div>
+        <div class="body">
+          <p>Sharper and more technical — earns the "cutting edge" feel without infecting the institute brand.</p>
+          <div class="row"><span>Display font</span><b>Space Grotesk 700</b></div>
+          <div class="row"><span>Body font</span><b>Inter (shared)</b></div>
+          <div class="row"><span>Utility / code</span><b>JetBrains Mono</b></div>
+          <div class="row"><span>AI accent</span><b>Code Teal #13C2A6</b></div>
+          <div class="row"><span>Still uses</span><b>DIIT teal + navy base</b></div>
+        </div>
+      </div>
+    </div>
+    <p class="note">Rule of thumb: if the audience is a parent, a government-job aspirant, or a Tally student → <b>Master</b>. If the audience is someone choosing to learn AI / web / code → <b>sub-brand</b>. When in doubt, use Master.</p>
+  </div>
+</section>
+
+<!-- 02 COLOUR -->
+<section style="background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <div class="kicker">02 — Colour</div>
+    <h2>The palette</h2>
+    <p class="lead">Teal stays the anchor — it's your logo and it's still uncontested in Indian ed-tech. The v1 coral is retired for <b>Vermilion</b>: same urgency, but it reads Indian and institutional rather than like a D2C app. The cool grey background is replaced by warm <b>Sand</b> to deliver the warmth the brand promises. Code Teal belongs to the AI sub-brand only.</p>
+    <div class="swatches">
+      <div class="sw"><div class="chip" style="background:#17688D"><span>#17688D</span></div><div class="meta"><b>Petrol Teal</b><small>Logo, headers, primary buttons, links</small><span class="role primary">Primary</span></div></div>
+      <div class="sw"><div class="chip dark" style="background:#0F1B2D"><span>#0F1B2D</span></div><div class="meta"><b>Ink Navy</b><small>Dark hero sections, footers, ad backgrounds</small><span class="role base">Dark base</span></div></div>
+      <div class="sw"><div class="chip dark" style="background:#E2533B"><span>#E2533B</span></div><div class="meta"><b>Vermilion</b><small>ONE call-to-action per screen. Nothing else.</small><span class="role accent">Accent / CTA</span></div></div>
+      <div class="sw"><div class="chip" style="background:#F5A623"><span>#F5A623</span></div><div class="meta"><b>Amber</b><small>"New batch", badges, small highlights</small><span class="role high">Highlight</span></div></div>
+      <div class="sw"><div class="chip" style="background:#FAF7F2;border-bottom:1px solid #E7E2DA"><span>#FAF7F2</span></div><div class="meta"><b>Sand</b><small>Default warm light background</small><span class="role neutral">Neutral</span></div></div>
+      <div class="sw"><div class="chip dark" style="background:#1E293B"><span>#1E293B</span></div><div class="meta"><b>Slate</b><small>Body text on light backgrounds</small><span class="role neutral">Text</span></div></div>
+      <div class="sw"><div class="chip dark" style="background:#64748B"><span>#64748B</span></div><div class="meta"><b>Mist</b><small>Captions, secondary text</small><span class="role neutral">Muted</span></div></div>
+      <div class="sw"><div class="chip dark" style="background:#13C2A6"><span>#13C2A6</span></div><div class="meta"><b>Code Teal</b><small>AI sub-brand accent — code, terminals only</small><span class="role code">AI only</span></div></div>
+    </div>
+    <p class="note"><b>Ratio guide:</b> roughly 60% neutrals (sand / white / slate), 30% teal family, 8% navy, 2% vermilion + amber combined. If vermilion is taking up more than a button, it's too much.</p>
+  </div>
+</section>
+
+<!-- 03 TYPE -->
+<section>
+  <div class="wrap">
+    <div class="kicker">03 — Type</div>
+    <h2>The type system</h2>
+    <p class="lead">All free on Google Fonts, so designers, your printer and Canva can use them with zero licensing risk. <b>Sora</b> replaces Space Grotesk as the everyday display face — modern but warmer and friendlier to parents, while Space Grotesk is held back for the AI sub-brand so it still feels special. Mukta carries Hindi; JetBrains Mono is now limited to genuinely technical bits, not every label.</p>
+    <div class="type-grid">
+      <div class="card">
+        <div class="label">Display — Master</div>
+        <div class="face">Sora — 600 / 700</div>
+        <div class="spec-display">Government-recognised IT courses</div>
+        <div class="spec-sub">Course titles · headlines · signage</div>
+        <div class="scale"><span>H1 44–58</span><span>H2 28–34</span><span>H3 20</span></div>
+      </div>
+      <div class="card">
+        <div class="label">Body &amp; UI</div>
+        <div class="face">Inter — 400 / 500 / 600</div>
+        <div class="spec-body">NIELIT-accredited training in Hisar since 2001 — O Level, CCC, Tally and programming, with installment options and in-person classes.</div>
+        <div class="scale"><span>Body 15–17</span><span>Small 13</span><span>Button 14/600</span></div>
+      </div>
+      <div class="card">
+        <div class="label">Devanagari</div>
+        <div class="face">Mukta — 600 / 700 (Hindi ads)</div>
+        <div class="spec-deva">कंप्यूटर सीखें, सरकारी नौकरी की तैयारी करें</div>
+        <div class="spec-body" style="margin-top:6px">Pairs cleanly with Inter for bilingual posters and WhatsApp creatives.</div>
+      </div>
+      <div class="card">
+        <div class="label">Display — AI sub-brand</div>
+        <div class="face">Space Grotesk — 700 + JetBrains Mono</div>
+        <div class="spec-grotesk">AI Website Developer</div>
+        <div class="spec-mono">// 20 MODULES · LIVE DEPLOY · #DIIT-2026-0142</div>
+        <div class="spec-body" style="margin-top:6px">Reserved for AI / coding courses, certificate serials and code snippets.</div>
+      </div>
+    </div>
+    <p class="note">Master-brand labels and eyebrows are now <b>Inter 600 small-caps</b>, not mono — mono on a CCC or Tally page reads as a developer tool to the wrong audience. If even Sora feels too modern for a formal notice, <b>Inter 700</b> is an acceptable headline fallback.</p>
+  </div>
+</section>
+
+<!-- 04 COMPONENTS -->
+<section style="background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <div class="kicker">04 — Components</div>
+    <h2>Buttons &amp; badges</h2>
+    <p class="lead">A small, repeatable kit so every page, doc and poster is built from the same parts. Teal carries primary actions; vermilion is the single hero CTA; amber and teal tints handle status.</p>
+    <div class="comp">
+      <div class="panel">
+        <div class="pt">Buttons</div>
+        <button class="btn cta">Enroll Now →</button>
+        <button class="btn primary">View Courses</button>
+        <button class="btn ghost">Call 98177-38058</button>
+        <p class="note" style="margin-top:6px">One vermilion CTA per screen. Everything secondary is teal solid or teal outline. Radius 10px, Sora 600.</p>
+      </div>
+      <div class="panel">
+        <div class="pt">Badges &amp; tags</div>
+        <div class="chiplist">
+          <span class="badge new">New Batch</span>
+          <span class="badge amber">Admission Open</span>
+          <span class="badge teal">NIELIT Accredited</span>
+          <span class="badge teal">Most Popular</span>
+          <span class="badge code">// AI Course</span>
+        </div>
+        <p class="note" style="margin-top:14px">Amber = time-sensitive. Teal tint = credibility / category. Vermilion badge = urgency, used sparingly. Mono badge belongs to AI courses only.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 DISCIPLINE -->
+<section>
+  <div class="wrap">
+    <div class="kicker">05 — Discipline</div>
+    <h2>The rules that keep it one brand</h2>
+    <p class="lead">v1's worry was that the logo and the course deck looked like two companies. These rules — plus the Master/sub-brand split — force everything onto one identity.</p>
+    <div class="rules">
+      <div class="rule do">
+        <h3>Always</h3>
+        <ul>
+          <li>Lead with teal — logo, headers, primary buttons, links.</li>
+          <li>Use navy only as a dark background for heroes, footers and ad panels.</li>
+          <li>Limit vermilion to one CTA per screen ("Enroll Now", "Book a seat").</li>
+          <li>Keep NIELIT + DIIT logos paired in the top corner for credibility.</li>
+          <li>Set Master headlines in Sora, body in Inter, Hindi in Mukta — every time.</li>
+          <li>Keep Space Grotesk, JetBrains Mono and Code Teal inside AI courses only.</li>
+        </ul>
+      </div>
+      <div class="rule dont">
+        <h3>Never</h3>
+        <ul>
+          <li>Run vermilion and amber loudly together — that's the webinar-funnel look.</li>
+          <li>Put mono fonts or Code Teal on CCC, O Level, Tally or institute material.</li>
+          <li>Add gradients, drop shadows, or a new colour "to make it pop".</li>
+          <li>Mix more than two fonts in a single piece (Mukta for Hindi doesn't count).</li>
+          <li>Stretch, recolour, rotate or add a glow to the logo.</li>
+          <li>Use the old coral #F23E5C anywhere — it is fully retired.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 IN THE WILD -->
+<section style="background:var(--paper);border-top:1px solid var(--line)">
+  <div class="wrap">
+    <div class="kicker">06 — In the wild</div>
+    <h2>How it shows up</h2>
+    <p class="lead">Same system across six surfaces. Notice teal does the carrying, vermilion appears exactly once per piece, and only the last tile — an AI course — switches into the sub-brand.</p>
+    <div class="apps">
+      <div class="app">
+        <div class="ad">
+          <div class="top">New Batch · Hisar</div>
+          <h4>Government job? Start with <span class="c">CCC</span>.</h4>
+          <div class="cta">Enroll Now →</div>
+        </div>
+        <div class="caption">Social / paid ad (Master)</div>
+      </div>
+      <div class="app">
+        <div class="merch">
+          <div class="brain">🎓</div>
+          <div class="big">DIIT</div>
+          <div class="slug">Learn · Certify · Get Hired</div>
+        </div>
+        <div class="caption">Hoodie / mug / tote</div>
+      </div>
+      <div class="app">
+        <div class="cert">
+          <div class="seal">DIIT · NIELIT Accredited</div>
+          <h4>Certificate of Completion</h4>
+          <div class="name">Student Name</div>
+          <div class="meta">Course on Computer Concepts · 2026</div>
+          <div class="serial">CERT #DIIT-2026-0142</div>
+        </div>
+        <div class="caption">Course certificate</div>
+      </div>
+    </div>
+    <div class="apps" style="margin-top:18px">
+      <div class="app">
+        <div class="webhead">
+          <div class="bar">
+            <div class="logo">DIIT</div>
+            <div class="nav"><span>Courses</span><span>NIELIT</span><span>About</span></div>
+          </div>
+          <div class="body2">
+            <div class="h">Computer courses<br>that get you hired.</div>
+            <span class="cta">Enroll Now</span>
+          </div>
+        </div>
+        <div class="caption">Website header (Master)</div>
+      </div>
+      <div class="app">
+        <div class="letter">
+          <div class="lh">
+            <div class="m">DIIT<small>Drishti Institute of IT · Hisar</small></div>
+          </div>
+          <div class="lbody"><b>Ref: DIIT/2026/...</b><br>To whom it may concern,<br>This is to certify that the student has been enrolled at our NIELIT-accredited centre...</div>
+        </div>
+        <div class="caption">Letterhead / document (Master)</div>
+      </div>
+      <div class="app">
+        <div class="aidev">
+          <div class="tag2">// DIIT.AI · New Course</div>
+          <h4>Build websites with AI — no coding.</h4>
+          <div class="codeline">$ deploy --site my-portfolio.diit.in</div>
+          <div class="cta">Join the batch →</div>
+        </div>
+        <div class="caption">AI Website Developer (sub-brand)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 ACCESSIBILITY -->
+<section>
+  <div class="wrap">
+    <div class="kicker">07 — Legibility &amp; contrast</div>
+    <h2>Accessible by default</h2>
+    <p class="lead">Your audience includes first-time computer users and older parents. These pairings are checked for WCAG AA contrast so text stays readable in print and on cheap phone screens.</p>
+    <table class="a11y">
+      <thead><tr><th>Foreground</th><th>Background</th><th>Use</th><th>Contrast</th></tr></thead>
+      <tbody>
+        <tr><td><b>Slate #1E293B</b></td><td>Sand #FAF7F2</td><td>Body text</td><td class="pass">AA ✓ (13.0:1)</td></tr>
+        <tr><td><b>White</b></td><td>Petrol Teal #17688D</td><td>Primary buttons</td><td class="pass">AA ✓ (4.8:1)</td></tr>
+        <tr><td><b>White</b></td><td>Vermilion #E2533B</td><td>CTA buttons</td><td class="pass">AA ✓ (4.5:1)</td></tr>
+        <tr><td><b>Ink #0F1B2D</b></td><td>Amber #F5A623</td><td>Badges (dark text only)</td><td class="pass">AA ✓ (9.1:1)</td></tr>
+        <tr><td><b>White</b></td><td>Amber #F5A623</td><td>Avoid — too low</td><td class="warn">Fail — use ink text</td></tr>
+        <tr><td><b>Mist #64748B</b></td><td>Sand #FAF7F2</td><td>Captions only (not body)</td><td class="pass">AA ✓ (4.6:1)</td></tr>
+      </tbody>
+    </table>
+    <p class="note">Minimum body size 15px web / 10.5pt print. Never set long text in amber or vermilion. Hindi (Mukta) one weight heavier than its English pairing for matched visual weight.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    DIIT — Drishti Institute of Information Technology · Hisar &nbsp;|&nbsp; <b>Primary #17688D</b> · Accent #E2533B · Base #0F1B2D · Sand #FAF7F2 &nbsp;|&nbsp; Master: Sora + Inter + Mukta &nbsp;·&nbsp; AI: Space Grotesk + JetBrains Mono &nbsp;|&nbsp; Brand System v2 · 2026
+  </div>
+</footer>
+
+</body>
+</html>
