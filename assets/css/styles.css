@@ -53,8 +53,10 @@ h1,h2,h3,h4,.display{font-family:'Sora',sans-serif;letter-spacing:-.02em;color:v
 .site-header{position:sticky;top:0;z-index:900;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 .nav{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:10px 24px;max-width:var(--maxw);margin:0 auto}
 .brand{display:flex;align-items:center;gap:12px;flex:none}
-.brand img{height:46px;width:auto}
-.brand .bsep{width:1px;height:34px;background:var(--line)}
+.brand img{width:auto;display:block}
+.brand .logo-diit{height:38px}
+.brand .logo-nielit{height:46px}
+.brand .bsep{width:1px;height:36px;background:var(--line)}
 .brand .btxt b{font-family:'Sora';font-weight:700;color:var(--teal);font-size:19px;display:block;line-height:1}
 .brand .btxt small{font-size:10.5px;letter-spacing:.04em;color:var(--mist);text-transform:uppercase}
 .nav-links{display:flex;align-items:center;gap:4px;list-style:none;flex-wrap:wrap}
