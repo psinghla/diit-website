@@ -29,7 +29,7 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "EducationalOrganization",
+  "@type": ["EducationalOrganization", "LocalBusiness"],
   "name": "Drishti Institute of Information Technology (DIIT)",
   "alternateName": "DIIT Hisar",
   "url": "https://diithisar.com/",
@@ -46,9 +46,27 @@
     "addressCountry": "IN"
   },
   "hasMap": "https://www.google.com/maps?cid=2531538996595029837",
+  "geo": { "@type": "GeoCoordinates", "latitude": 29.1478288, "longitude": 75.7250605 },
+  "areaServed": { "@type": "City", "name": "Hisar" },
+  "priceRange": "₹₹",
   "openingHours": "Mo-Sa 08:00-18:00",
+  "openingHoursSpecification": [{
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+    "opens": "08:00",
+    "closes": "18:00"
+  }],
   "sameAs": ["https://www.instagram.com/diit.india/"]
 }
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+ {"@type":"Question","name":"Is DIIT a NIELIT-accredited institute?","acceptedAnswer":{"@type":"Answer","text":"Yes. DIIT (Drishti Institute of Information Technology) is a NIELIT-accredited (formerly DOEACC) computer training centre in Hisar, run by a society educating since 2001. Certifications carry pan-India recognition."}},
+ {"@type":"Question","name":"Which courses does DIIT offer?","acceptedAnswer":{"@type":"Answer","text":"Six NIELIT programs (O Level, CCC, CCC Plus, BCC, ACC, ECC), Tally Prime Basic and Advanced, programming (Python, C, C++, JavaScript), and AI internship tracks including cyber security and digital marketing."}},
+ {"@type":"Question","name":"Where is DIIT located in Hisar?","acceptedAnswer":{"@type":"Answer","text":"Between Camp Chowk and Matka Chowk, behind IDBI Bank, Hisar, Haryana."}},
+ {"@type":"Question","name":"What are the class timings?","acceptedAnswer":{"@type":"Answer","text":"The institute is open Monday to Saturday, 8 AM to 6 PM. Batch timings are flexible."}},
+ {"@type":"Question","name":"Do you offer fee installments?","acceptedAnswer":{"@type":"Answer","text":"Yes. Fees are kept affordable for local families and most courses can be paid in easy installments."}}
+]}
 </script>
 </head>
 <body>
@@ -292,6 +310,24 @@
         </div>
         <a href="https://www.google.com/maps?cid=2531538996595029837" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top:18px">Open in Google Maps →</a>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="kicker">FAQs</span>
+      <h2>Frequently asked questions</h2>
+      <p>Quick answers about DIIT, our courses and admissions in Hisar.</p>
+    </div>
+    <div class="faq">
+      <details><summary>Is DIIT a NIELIT-accredited institute?</summary><div class="faq-a">Yes. DIIT (Drishti Institute of Information Technology) is a NIELIT-accredited (formerly DOEACC) computer training centre in Hisar, run by a society educating since 2001. Our certifications carry pan-India recognition.</div></details>
+      <details><summary>Which courses does DIIT offer?</summary><div class="faq-a">Six NIELIT programs (O Level, CCC, CCC Plus, BCC, ACC, ECC), Tally Prime (Basic &amp; Advanced), programming (Python, C, C++, JavaScript), and AI internship tracks including cyber security and digital marketing. See <a href="courses.html">all courses</a>.</div></details>
+      <details><summary>Where is DIIT located in Hisar?</summary><div class="faq-a">We are between Camp Chowk &amp; Matka Chowk, behind IDBI Bank, Hisar, Haryana. <a href="https://www.google.com/maps?cid=2531538996595029837" target="_blank" rel="noopener">Open in Google Maps</a>.</div></details>
+      <details><summary>What are the class timings?</summary><div class="faq-a">The institute is open Monday to Saturday, 8 AM to 6 PM. Batch timings are flexible — contact us to find a slot that suits you.</div></details>
+      <details><summary>Do you offer fee installments?</summary><div class="faq-a">Yes. Fees are kept affordable for local families and most courses can be paid in easy installments. <a href="contact.html#enquire">Enquire now</a> for current fees.</div></details>
     </div>
   </div>
 </section>

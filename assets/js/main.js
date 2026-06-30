@@ -66,6 +66,38 @@
     });
   }
 
+  /* ---------- course search / filter ---------- */
+  var csearch = document.getElementById("course-search-input");
+  if (csearch) {
+    var cards = Array.prototype.slice.call(document.querySelectorAll(".card")).filter(function (c) {
+      return c.querySelector(".course-card");
+    });
+    var bands = Array.prototype.slice.call(document.querySelectorAll(".cat-band"));
+    var noRes = document.querySelector(".course-noresult");
+    csearch.addEventListener("input", function () {
+      var q = csearch.value.trim().toLowerCase();
+      var shown = 0;
+      cards.forEach(function (c) {
+        var match = c.textContent.toLowerCase().indexOf(q) !== -1;
+        c.classList.toggle("is-hidden", !match);
+        if (match) shown++;
+      });
+      // hide a category band if every course card in the grid(s) after it (until next band) is hidden
+      bands.forEach(function (band) {
+        var el = band.nextElementSibling, anyVisible = false;
+        while (el && !el.classList.contains("cat-band")) {
+          var inner = el.querySelectorAll ? el.querySelectorAll(".card") : [];
+          for (var i = 0; i < inner.length; i++) {
+            if (inner[i].querySelector(".course-card") && !inner[i].classList.contains("is-hidden")) anyVisible = true;
+          }
+          el = el.nextElementSibling;
+        }
+        band.classList.toggle("is-hidden", q !== "" && !anyVisible);
+      });
+      if (noRes) noRes.style.display = shown === 0 ? "block" : "none";
+    });
+  }
+
   /* ---------- footer year ---------- */
   var y = document.getElementById("year");
   if (y) y.textContent = new Date().getFullYear();
