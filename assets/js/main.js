@@ -18,6 +18,30 @@
     });
   }
 
+  /* ---------- nav dropdown (Student Section) ---------- */
+  var drops = Array.prototype.slice.call(document.querySelectorAll(".has-drop"));
+  drops.forEach(function (d) {
+    var t = d.querySelector(".drop-toggle");
+    if (!t) return;
+    t.addEventListener("click", function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      var willOpen = !d.classList.contains("open");
+      drops.forEach(function (o) { o.classList.remove("open"); });
+      d.classList.toggle("open", willOpen);
+      t.setAttribute("aria-expanded", willOpen ? "true" : "false");
+    });
+  });
+  document.addEventListener("click", function (e) {
+    if (!e.target.closest || !e.target.closest(".has-drop")) {
+      drops.forEach(function (o) {
+        o.classList.remove("open");
+        var tt = o.querySelector(".drop-toggle");
+        if (tt) tt.setAttribute("aria-expanded", "false");
+      });
+    }
+  });
+
   /* ---------- hero carousel ---------- */
   var slides = Array.prototype.slice.call(document.querySelectorAll(".hero-slide"));
   var dotsWrap = document.querySelector(".hero-dots");

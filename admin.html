@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Certificate Admin — DIIT Hisar</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/png" href="assets/logos/diit.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+<style>
+  .admin-wrap{max-width:920px;margin:0 auto;padding:40px 0}
+  .admin-head{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:24px;flex-wrap:wrap}
+  .admin-head h1{margin:0;font-size:1.5rem}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:640px){.grid2{grid-template-columns:1fr}}
+  .login-wrap{max-width:400px;margin:60px auto}
+  .msg{padding:12px 14px;border-radius:10px;font-size:.9rem;margin-top:14px;display:none}
+  .msg.show{display:block}
+  .msg.ok{background:#e7f6ed;color:#0b7a43;border:1px solid #b7e4c7}
+  .msg.err{background:#fdecea;color:#922b21;border:1px solid #f5c6cb}
+  table.cert-table{width:100%;border-collapse:collapse;margin-top:10px;font-size:.9rem}
+  .cert-table th,.cert-table td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line,#eef0f2)}
+  .cert-table th{font-family:'Sora',sans-serif;color:var(--muted,#667085);font-weight:600;font-size:.82rem}
+  .btn-del{background:none;border:1px solid #e0a3a3;color:#922b21;border-radius:8px;padding:5px 10px;cursor:pointer;font-size:.82rem}
+  .btn-del:hover{background:#fdecea}
+  .spinner{width:16px;height:16px;border:2.5px solid rgba(255,255,255,.5);border-top-color:#fff;border-radius:50%;display:inline-block;animation:spin .7s linear infinite;vertical-align:-3px}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .muted-sm{color:var(--muted,#667085);font-size:.85rem}
+  .table-scroll{overflow-x:auto}
+</style>
+</head>
+<body>
+<main id="main">
+<div class="wrap">
+
+  <!-- LOGIN -->
+  <section id="login-view" class="login-wrap" style="display:none">
+    <div style="text-align:center;margin-bottom:18px">
+      <img src="assets/logos/diit.png" alt="DIIT" style="height:46px">
+      <h1 style="font-size:1.3rem;margin:14px 0 4px">Certificate Admin</h1>
+      <p class="muted-sm">DIIT staff only — please sign in.</p>
+    </div>
+    <form class="form-card" id="login-form">
+      <div class="field">
+        <label for="email">Email</label>
+        <input type="email" id="email" required autocomplete="username">
+      </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <input type="password" id="password" required autocomplete="current-password">
+      </div>
+      <button class="btn btn-cta" id="login-btn" style="width:100%;justify-content:center">Sign in</button>
+      <div class="msg err" id="login-msg"></div>
+    </form>
+  </section>
+
+  <!-- DASHBOARD -->
+  <section id="admin-view" class="admin-wrap" style="display:none">
+    <div class="admin-head">
+      <h1>Certificate Admin</h1>
+      <div class="muted-sm">Signed in as <b id="who"></b> &nbsp;·&nbsp; <a href="#" id="logout">Sign out</a></div>
+    </div>
+
+    <div class="form-card">
+      <h2 style="margin:0 0 4px;font-size:1.1rem">Add a certificate</h2>
+      <p class="muted-sm" style="margin:0 0 16px">These details are what students will see when they verify.</p>
+      <form id="add-form">
+        <div class="grid2">
+          <div class="field">
+            <label for="cert_number">Certificate number *</label>
+            <input type="text" id="cert_number" required placeholder="DIIT/2025/00123">
+          </div>
+          <div class="field">
+            <label for="roll_no">DIIT roll number *</label>
+            <input type="text" id="roll_no" required placeholder="DIIT-2025-045">
+          </div>
+        </div>
+        <div class="field">
+          <label for="student_name">Student name *</label>
+          <input type="text" id="student_name" required placeholder="Rahul Kumar">
+        </div>
+        <div class="grid2">
+          <div class="field">
+            <label for="course">Course *</label>
+            <input type="text" id="course" required list="course-list" placeholder="O Level">
+            <datalist id="course-list">
+              <option>O Level</option><option>CCC</option><option>CCC Plus</option>
+              <option>BCC</option><option>ACC</option><option>ECC</option>
+              <option>Tally Basic</option><option>Tally Advanced</option>
+              <option>Python</option><option>C Programming</option><option>C++</option>
+              <option>JavaScript</option><option>AI Internship Program</option>
+            </datalist>
+          </div>
+          <div class="field">
+            <label for="duration">Duration *</label>
+            <input type="text" id="duration" required placeholder="6 months">
+          </div>
+        </div>
+        <div class="field">
+          <label for="issue_date">Issue date *</label>
+          <input type="date" id="issue_date" required>
+        </div>
+        <button class="btn btn-cta" id="add-btn" style="justify-content:center">Add certificate</button>
+        <div class="msg" id="add-msg"></div>
+      </form>
+    </div>
+
+    <div class="form-card" style="margin-top:20px">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+        <h2 style="margin:0;font-size:1.1rem">Issued certificates (<span id="count">0</span>)</h2>
+        <input type="search" id="search" placeholder="Search name / roll / cert no." style="max-width:260px">
+      </div>
+      <div class="table-scroll">
+        <table class="cert-table">
+          <thead><tr><th>Cert no.</th><th>Roll no.</th><th>Name</th><th>Course</th><th>Duration</th><th>Issued</th><th></th></tr></thead>
+          <tbody id="cert-rows"></tbody>
+        </table>
+      </div>
+      <p class="muted-sm" id="empty-note" style="display:none;margin-top:12px">No certificates yet. Add your first one above.</p>
+    </div>
+  </section>
+
+</div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+(function(){
+  const SUPABASE_URL = "https://zlehlxxfcrzkjkufocfy.supabase.co";
+  const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpsZWhseHhmY3J6a2prdWZvY2Z5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM2NTgzMDgsImV4cCI6MjA5OTIzNDMwOH0.fy-Kyvyhk3i7LoQZY5uX1rE8djXDyBs5wIjoMMgv8pw";
+  const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+  const loginView = document.getElementById('login-view');
+  const adminView = document.getElementById('admin-view');
+  let allCerts = [];
+
+  function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
+  function msg(el,type,text){ el.className='msg '+type+' show'; el.textContent=text; }
+  function hide(el){ el.className='msg'; }
+
+  async function refreshView(){
+    const { data:{ session } } = await sb.auth.getSession();
+    if(session){
+      loginView.style.display='none';
+      adminView.style.display='block';
+      document.getElementById('who').textContent = session.user.email;
+      loadCerts();
+    } else {
+      adminView.style.display='none';
+      loginView.style.display='block';
+    }
+  }
+
+  // LOGIN
+  document.getElementById('login-form').addEventListener('submit', async function(e){
+    e.preventDefault();
+    const btn=document.getElementById('login-btn'), lbl=btn.textContent;
+    const m=document.getElementById('login-msg'); hide(m);
+    btn.disabled=true; btn.innerHTML='<span class="spinner"></span> Signing in…';
+    const { error } = await sb.auth.signInWithPassword({
+      email: document.getElementById('email').value.trim(),
+      password: document.getElementById('password').value
+    });
+    btn.disabled=false; btn.textContent=lbl;
+    if(error){ msg(m,'err', error.message || 'Sign in failed.'); return; }
+    refreshView();
+  });
+
+  // LOGOUT
+  document.getElementById('logout').addEventListener('click', async function(e){
+    e.preventDefault(); await sb.auth.signOut(); refreshView();
+  });
+
+  // ADD CERTIFICATE
+  document.getElementById('add-form').addEventListener('submit', async function(e){
+    e.preventDefault();
+    const btn=document.getElementById('add-btn'), lbl=btn.textContent;
+    const m=document.getElementById('add-msg'); hide(m);
+    const rec = {
+      cert_number: document.getElementById('cert_number').value.trim(),
+      roll_no: document.getElementById('roll_no').value.trim(),
+      student_name: document.getElementById('student_name').value.trim(),
+      course: document.getElementById('course').value.trim(),
+      duration: document.getElementById('duration').value.trim(),
+      issue_date: document.getElementById('issue_date').value
+    };
+    btn.disabled=true; btn.innerHTML='<span class="spinner"></span> Saving…';
+    const { error } = await sb.from('certificates').insert(rec);
+    btn.disabled=false; btn.textContent=lbl;
+    if(error){
+      msg(m,'err', error.code==='23505' ? 'That certificate number already exists.' : (error.message||'Could not save.'));
+      return;
+    }
+    msg(m,'ok','Certificate added successfully.');
+    e.target.reset();
+    loadCerts();
+  });
+
+  // LIST
+  async function loadCerts(){
+    const { data, error } = await sb.from('certificates').select('*').order('created_at',{ascending:false});
+    if(error){ return; }
+    allCerts = data||[];
+    renderRows();
+  }
+
+  function renderRows(){
+    const q = document.getElementById('search').value.trim().toLowerCase();
+    const rows = allCerts.filter(c => !q ||
+      (c.student_name+' '+c.roll_no+' '+c.cert_number+' '+c.course).toLowerCase().includes(q));
+    document.getElementById('count').textContent = allCerts.length;
+    document.getElementById('empty-note').style.display = allCerts.length? 'none':'block';
+    document.getElementById('cert-rows').innerHTML = rows.map(c =>
+      '<tr>'+
+      '<td>'+esc(c.cert_number)+'</td>'+
+      '<td>'+esc(c.roll_no)+'</td>'+
+      '<td>'+esc(c.student_name)+'</td>'+
+      '<td>'+esc(c.course)+'</td>'+
+      '<td>'+esc(c.duration)+'</td>'+
+      '<td>'+esc(c.issue_date)+'</td>'+
+      '<td><button class="btn-del" data-id="'+esc(c.id)+'">Delete</button></td>'+
+      '</tr>').join('');
+  }
+
+  document.getElementById('search').addEventListener('input', renderRows);
+
+  document.getElementById('cert-rows').addEventListener('click', async function(e){
+    const b = e.target.closest('.btn-del'); if(!b) return;
+    if(!confirm('Delete this certificate? Students will no longer be able to verify it.')) return;
+    const { error } = await sb.from('certificates').delete().eq('id', b.getAttribute('data-id'));
+    if(!error) loadCerts();
+  });
+
+  refreshView();
+})();
+</script>
+</body>
+</html>

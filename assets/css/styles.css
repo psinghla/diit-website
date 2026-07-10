@@ -333,3 +333,24 @@ section{padding:64px 0}
   .gallery-grid{grid-template-columns:1fr}
   .brand .btxt small{display:none}
 }
+
+/* =========== NAV DROPDOWN (Student Section) =========== */
+.has-drop{position:relative}
+.drop-toggle{display:inline-flex;align-items:center;gap:5px;font-family:'Inter';font-weight:500;font-size:14.5px;color:var(--slate);padding:9px 12px;border-radius:8px;background:none;border:0;cursor:pointer;white-space:nowrap;line-height:1.2}
+.drop-toggle:hover{background:var(--teal-tint);color:var(--teal)}
+.drop-toggle.active{color:var(--teal);font-weight:600}
+.drop-toggle .caret{width:13px;height:13px;transition:transform .2s}
+.has-drop.open>.drop-toggle .caret{transform:rotate(180deg)}
+.drop-menu{list-style:none;margin:0;padding:6px;position:absolute;top:calc(100% + 6px);left:0;min-width:215px;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow-md);display:none;z-index:950}
+.has-drop.open>.drop-menu{display:block}
+.drop-menu li{margin:0}
+.drop-menu a{display:block;padding:10px 12px;border-radius:8px;font-size:14.5px}
+@media(min-width:861px){
+  .has-drop:hover>.drop-menu{display:block}
+  .has-drop:hover>.drop-toggle .caret{transform:rotate(180deg)}
+}
+@media(max-width:860px){
+  .has-drop{width:100%}
+  .drop-toggle{width:100%;justify-content:space-between;padding:12px 10px;font-size:15px}
+  .drop-menu{position:static;box-shadow:none;border:0;padding:0 0 4px 14px;min-width:0}
+}
