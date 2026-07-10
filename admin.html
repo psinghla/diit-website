@@ -165,7 +165,7 @@
       password: document.getElementById('password').value
     });
     btn.disabled=false; btn.textContent=lbl;
-    if(error){ msg(m,'err', error.message || 'Sign in failed.'); return; }
+    if(error){ msg(m,'err', (error && error.message) ? error.message : 'Sign in failed — please check your email and password and try again.'); return; }
     refreshView();
   });
 
